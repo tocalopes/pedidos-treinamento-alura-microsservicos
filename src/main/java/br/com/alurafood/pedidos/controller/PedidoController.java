@@ -1,5 +1,6 @@
 package br.com.alurafood.pedidos.controller;
 
+import br.com.alurafood.pedidos.dto.ItemDoPedidoDto;
 import br.com.alurafood.pedidos.dto.PedidoDto;
 import br.com.alurafood.pedidos.dto.StatusDto;
 import br.com.alurafood.pedidos.service.PedidoService;
@@ -31,6 +32,12 @@ public class PedidoController {
             PedidoDto dto = service.obterPorId(id);
 
             return  ResponseEntity.ok(dto);
+        }
+
+        @GetMapping("/itens/{id}")
+        public ResponseEntity<List<ItemDoPedidoDto>> listarItensId(@PathVariable @NotNull Long id) {
+            PedidoDto dto = service.obterPorId(id);
+            return  ResponseEntity.ok(dto.getItens());
         }
 
         @PostMapping()
